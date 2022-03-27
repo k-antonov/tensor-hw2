@@ -1,10 +1,31 @@
 package com.example.main;
 
+import com.example.main.filesystem.File;
+import com.example.main.filesystem.Folder;
+import com.example.main.gambling.Card;
+import com.example.main.gambling.CardC;
+import com.example.main.gambling.DataCardB;
+import com.example.main.gambling.Deck;
+
 public class Main {
     public static void main(String[] args) {
 //        secondTask();
 //        thirdTask();
-        fourthTask();
+//        fourthTask();
+        fifthTask();
+    }
+
+    private static void fifthTask() {
+        Folder root = new Folder(null, null, "/");
+        Folder home = new Folder(root, "home", "./home");
+        Folder memes = new Folder(home, "memes", "./memes",
+                new File("jackals.jpg", "./jackals.jpg"),
+                new File("khasbik.jpg", "./khasbik.jpg"),
+                new File("pixar_mom.png", "./pixar_mom.png"));
+        System.out.println(memes.getChildNodes());
+        File file = (File) memes.getChildNodes().get(2);
+        System.out.println(file.getPath());
+        System.out.println(file.getExtension());
     }
 
     private static void fourthTask() {

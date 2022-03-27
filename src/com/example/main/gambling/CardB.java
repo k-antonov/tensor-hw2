@@ -1,4 +1,4 @@
-package com.example.main;
+package com.example.main.gambling;
 
 import java.util.Set;
 
