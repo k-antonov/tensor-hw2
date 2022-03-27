@@ -2,23 +2,38 @@ package com.example.main;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
 import java.util.Map;
 
-public class DataCardB extends CardB {
-    private static final Map<Integer, String> RANK_NAMES = Map.of(
-            10, "Jack",
-            11, "Queen",
-            12, "King",
-            13, "Ace"
-    );
+public class DataCardB extends CardB implements Comparable {
+    private static final Map<Integer, String> RANK_NAMES = new HashMap<>();
+
+    static {
+        for (int i = 2; i <= 9; i++) {
+            RANK_NAMES.compute(i, (key, value) ->  String.valueOf(key));
+        }
+        RANK_NAMES.put(10, "Jack");
+        RANK_NAMES.put(11, "Queen");
+        RANK_NAMES.put(12, "King");
+        RANK_NAMES.put(13, "Ace");
+    }
+
     private static final Map<Integer, String> SUIT_NAMES = Map.of(
             DIAMONDS, "Diamonds",
             CLUBS, "Clubs",
             HEARTS, "Hearts",
             SPADES, "Spades"
     );
-    private static final DataCardB redJoker = new DataCardB(14, HEARTS);
-    private static final DataCardB blackJoker = new DataCardB(14, SPADES);
+    public static final DataCardB redJoker = new DataCardB(14, HEARTS);
+    public static final DataCardB blackJoker = new DataCardB(14, SPADES);
+
+    public static Map<Integer, String> getRankNames() {
+        return RANK_NAMES;
+    }
+
+    public static Map<Integer, String> getSuitNames() {
+        return SUIT_NAMES;
+    }
 
     public static int compare(@NotNull DataCardB card, @NotNull DataCardB anotherCard) {
         return card.compareToAny(anotherCard);
@@ -36,7 +51,7 @@ public class DataCardB extends CardB {
 
     // не понял какие правила сравнения "обычных" карт с джокерами
     // и сравнения джокеров между собой
-    public final boolean compareTo(@NotNull DataCardB card) {
+    public final boolean compareToOther(@NotNull DataCardB card) {
         if (suit != card.suit) {
             System.out.println("Can't compare cards with different suits. Use compareToAny(DataCardB card)");
             return false;
@@ -92,5 +107,9 @@ public class DataCardB extends CardB {
         return result;
     }
 
-
+    @Override
+    public int compareTo(@NotNull Object o) {
+        DataCardB card = (DataCardB) o;
+        return compareToAny(card);
+    }
 }
