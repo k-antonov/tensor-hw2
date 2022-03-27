@@ -1,47 +1,35 @@
 package com.example.main;
 
+import java.util.Set;
+
 // не наследуюсь от CardA, потому что нельзя public поле переопределить в private.
-public class CardB implements Card {
-    private int rank;
-    private int suit;
+public abstract class CardB implements Card {
+    // считаю, что Set здесь уместнее, чем массив
+    protected static final Set<Integer> KNOWN_SUITS = Set.of(DIAMONDS, CLUBS, HEARTS, SPADES);
+
+    protected final int rank;
+    protected final int suit;
 
     public CardB(int rank, int suit) {
+        checkSuit(suit);
         this.rank = rank;
-        setSuit(suit);
+        this.suit = suit;
     }
 
     public int getRank() {
         return rank;
     }
 
-    public void setRank(int rank) {
-        this.rank = rank;
-    }
-
     public int getSuit() {
         return suit;
-    }
-
-    public void setSuit(int suit) {
-        if (checkSuit(suit)) {
-            this.suit = suit;
-        } else {
-            System.out.println("Setting suit to " + DIAMONDS);
-            this.suit = DIAMONDS;
-        }
     }
 
     // хотелось бы использовать Enum, но в задании написано проверять значение suit и в случае
     // ошибки выводить соответствующее значение. При использовании Enum проверка не имела бы
     // смысла, т. к. нельзя было бы передать некорректное значение в setSuit(Suit suit)
-    private boolean checkSuit(int suit) {
-        int[] allSuits = {DIAMONDS, CLUBS, HEARTS, SPADES};
-        for (int s : allSuits) {
-            if (suit == s) {
-                return true;
-            }
+    protected final void checkSuit(int suit) {
+        if (!KNOWN_SUITS.contains(suit)) {
+            throw new IllegalArgumentException("Wrong suit value " + suit);
         }
-        System.err.println("Invalid suit value");
-        return false;
     }
 }
