@@ -48,7 +48,7 @@ abstract class AbstractFileSystemNode(
 
     final override fun getPath(): String {
         val parentPath = _parent?.getPath() ?: ""
-        val pathSplit = _path.split("/") // java split работает иначе, поэтому баг
+        val pathSplit = _path.split("/")
         val childPath = if (pathSplit[0] != "") {
             "/${pathSplit[pathSplit.lastIndex]}"
         } else ""
