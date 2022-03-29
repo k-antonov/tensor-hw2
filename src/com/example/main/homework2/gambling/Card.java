@@ -1,4 +1,4 @@
-package com.example.main.gambling;
+package com.example.main.homework2.gambling;
 
 public interface Card {
     int DIAMONDS = 0;

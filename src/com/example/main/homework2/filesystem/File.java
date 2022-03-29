@@ -1,4 +1,4 @@
-package com.example.main.filesystem;
+package com.example.main.homework2.filesystem;
 
 public class File extends AbstractFileSystemNode {
     public File(String name, String path) {

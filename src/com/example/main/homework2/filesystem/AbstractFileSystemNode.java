@@ -1,4 +1,4 @@
-package com.example.main.filesystem;
+package com.example.main.homework2.filesystem;
 
 public abstract class AbstractFileSystemNode implements FileSystemNode {
     protected FileSystemNode parent;

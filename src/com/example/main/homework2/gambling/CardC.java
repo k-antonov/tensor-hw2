@@ -1,4 +1,4 @@
-package com.example.main.gambling;
+package com.example.main.homework2.gambling;
 
 import java.util.HashMap;
 import java.util.Map;
