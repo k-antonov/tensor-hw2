@@ -2,10 +2,7 @@ package com.example.main.homework2;
 
 import com.example.main.homework2.filesystem.File;
 import com.example.main.homework2.filesystem.Folder;
-import com.example.main.homework2.gambling.Card;
-import com.example.main.homework2.gambling.CardC;
-import com.example.main.homework2.gambling.DataCardB;
-import com.example.main.homework2.gambling.Deck;
+import com.example.main.homework2.gambling.*;
 
 public class TestJava {
     public static void fifthTask() {
@@ -28,10 +25,10 @@ public class TestJava {
             System.out.println("Dealt " + deck52.dealCard());
         }
         try {
-            deck52.returnCard(new DataCardB(13, Card.HEARTS));
-            deck52.returnCard(new DataCardB(12, Card.HEARTS));
-            deck52.returnCard(new DataCardB(11, Card.HEARTS));
-            deck52.returnCard(new DataCardB(11, Card.HEARTS));
+            deck52.returnCard(new DataCardB(Rank.ACE, Suit.HEARTS));
+            deck52.returnCard(new DataCardB(Rank.KING, Suit.HEARTS));
+            deck52.returnCard(new DataCardB(Rank.QUEEN, Suit.HEARTS));
+            deck52.returnCard(new DataCardB(Rank.QUEEN, Suit.HEARTS));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
@@ -48,29 +45,34 @@ public class TestJava {
     }
 
     public static void secondTask() {
-        CardC cardCFirst = new CardC(4, Card.DIAMONDS);
-        CardC cardCSecond = new CardC(6, Card.CLUBS);
-        CardC cardCThird = new CardC(Card.DIAMONDS);
-        System.out.println(cardCThird.getRank());
+        CardC fourOfDiamonds = new CardC(Rank.FOUR, Suit.DIAMONDS);
+        CardC sixOfClubs = new CardC(Rank.SIX, Suit.CLUBS);
+        CardC shouldBeFiveOfDiamonds = new CardC(Suit.DIAMONDS);
+        System.out.println(shouldBeFiveOfDiamonds.getRank());
     }
 
     public static void thirdTask() {
-        DataCardB eightOfHearts = new DataCardB(8, Card.HEARTS);
-        DataCardB anotherEightOfHearts = new DataCardB(8, Card.HEARTS);
-        DataCardB aceOfSpades = new DataCardB(13, Card.SPADES);
+        DataCardB eightOfHearts = new DataCardB(Rank.EIGHT, Suit.HEARTS);
+        DataCardB anotherEightOfHearts = new DataCardB(Rank.EIGHT, Suit.HEARTS);
+        DataCardB aceOfSpades = new DataCardB(Rank.ACE, Suit.SPADES);
         System.out.println(eightOfHearts.equals(anotherEightOfHearts));
         System.out.println(aceOfSpades);
 
-        DataCardB wrongCard = new DataCardB(1, Card.DIAMONDS);
-        DataCardB joker = new DataCardB(14, Card.SPADES);
-        for (DataCardB card : new DataCardB[]{eightOfHearts, aceOfSpades, wrongCard, joker}) {
+        // невозможно создать карту не из стандартной колоды,
+        // в перечислениях объявлены все возможные варианты
+//        DataCardB wrongCard = new DataCardB(Rank.ONE, Suit.DIAMONDS);
+        DataCardB blackJoker = new DataCardB(Rank.JOKER, Suit.SPADES);
+
+        // поэтому функция больше не имеет смысла
+        for (DataCardB card : new DataCardB[]{eightOfHearts, aceOfSpades, blackJoker}) {
             System.out.println(card + " in standard deck? " + card.inStandardDeck());
         }
+
         System.out.println(eightOfHearts + " stronger than " + aceOfSpades
                 + "? " + eightOfHearts.compareToOther(aceOfSpades));
 
-        DataCardB sevenOfSpades = new DataCardB(7, Card.SPADES);
-        DataCardB sevenOfHearts = new DataCardB(7, Card.HEARTS);
+        DataCardB sevenOfSpades = new DataCardB(Rank.SEVEN, Suit.SPADES);
+        DataCardB sevenOfHearts = new DataCardB(Rank.SEVEN, Suit.HEARTS);
         System.out.println(sevenOfSpades + " stronger than " + aceOfSpades
                 + "? " + sevenOfSpades.compareToAny(aceOfSpades));
         System.out.println(sevenOfHearts + " stronger than " + sevenOfSpades

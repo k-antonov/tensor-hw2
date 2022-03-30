@@ -10,11 +10,12 @@ public class Deck {
     private final ArrayList<DataCardB> list = new ArrayList<>();
 
     private Deck(boolean withJokers) {
-        for (int suit : DataCardB.getSuitNames().keySet()) {
-            for (int rank : DataCardB.getRankNames().keySet()) {
+        for (Suit suit : Suit.values()) {
+            for (Rank rank : Rank.values()) {
                 list.add(new DataCardB(rank, suit));
             }
         }
+
         if (withJokers) {
             list.add(DataCardB.redJoker);
             list.add(DataCardB.blackJoker);

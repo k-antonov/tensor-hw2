@@ -1,8 +1,6 @@
 package com.example.main.homework2.gambling;
 
-public interface Card {
-    int DIAMONDS = 0;
-    int CLUBS = 1;
-    int HEARTS = 2;
-    int SPADES = 3;
+abstract class Card {
+    protected Rank rank;
+    protected Suit suit;
 }

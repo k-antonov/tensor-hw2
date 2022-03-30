@@ -5,7 +5,7 @@ import com.example.main.homework3.TestKt;
 
 public class Main {
     public static void main(String[] args) {
-//        TestJava.fifthTask();
-        TestKt.thirdTask();
+        TestJava.thirdTask();
+//        TestKt.thirdTask();
     }
 }
