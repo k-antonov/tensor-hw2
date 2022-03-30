@@ -48,7 +48,7 @@ public class DataCardB extends CardB implements Comparable {
     public String toString() {
         String capitalizedSuit = suit.name().charAt(0) +
                 suit.name().substring(1).toLowerCase();
-        return String.format("%s of %s", rank.getName(), capitalizedSuit);
+        return String.format("DataCardB(%s of %s)", rank.getName(), capitalizedSuit);
     }
 
     @Override
